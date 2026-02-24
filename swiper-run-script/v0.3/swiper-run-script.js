@@ -1,3 +1,5 @@
+/* Works with Tabs */
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const instances = [];
