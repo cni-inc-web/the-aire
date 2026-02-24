@@ -21,14 +21,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const contentSwiper = new Swiper(contentEl, {
-      speed: 0,
-      loop: true,
-      followFinger: false,
-      effect: "fade",
-      fadeEffect: {
-        crossFade: true
-      }
-    });
+  speed: 0,
+  loop: true,
+  followFinger: false,
+  effect: "fade",
+  fadeEffect: { crossFade: true },
+
+  observer: true,
+  observeParents: true
+});
 
     // 🔗 Sync only this pair
     photoSwiper.controller.control = contentSwiper;
