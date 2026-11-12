@@ -29,9 +29,11 @@
       const advanced = v.currentTime > t0 + 0.05;
       const nowPaused = v.paused;
 
+      /*
       console.log(`[WF NO-FLASH] ${label}`, {
         id: v.id, wasPaused, nowPaused, t0, t1: v.currentTime, advanced
       });
+      */
 
       // If it's still stuck (paused or not advancing), do a LIGHT nudge:
       if (nowPaused || !advanced) {
@@ -49,7 +51,7 @@
     const vids = Array.from(document.querySelectorAll(`${LIST_WRAPPER} ${VIDEO_SEL}`))
       .filter(isVisible);
 
-    console.log(`[WF NO-FLASH] ${label} visible videos:`, vids.length);
+    //console.log(`[WF NO-FLASH] ${label} visible videos:`, vids.length);
     vids.forEach(v => gentleEnsurePlaying(v, label));
   }
 
@@ -57,7 +59,7 @@
     const wrapper = document.querySelector(LIST_WRAPPER);
     if (!wrapper) return false;
 
-    console.log('[WF NO-FLASH] Observer attached');
+    //console.log('[WF NO-FLASH] Observer attached');
 
     let timer = null;
     const obs = new MutationObserver((mutations) => {
