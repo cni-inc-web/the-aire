@@ -1,42 +1,33 @@
-// For Nav Animation. Only include on pages where you want it to happen
-
-const navStyles = document.createElement('style');
-
-navStyles.textContent = `
-  .aire-nav_logo-link,
-  .aire-nav_background {
-    opacity: 0;
-    transition: opacity 1000ms ease;
-  }
-
-  .aire-nav_logo-link.nav-visible,
-  .aire-nav_background.nav-visible {
-    opacity: 1;
-  }
-`;
-
-document.head.appendChild(navStyles);
-
 document.addEventListener('DOMContentLoaded', function () {
-  const logo = document.querySelector('.aire-nav_logo-link');
-  const bg = document.querySelector('.aire-nav_background');
+  const menu = document.querySelector('.aire-nav_hamburger-menu');
+  const checkbox = document.querySelector('.aire-hamburger input');
+  const webflowButton = document.querySelector('.w-nav-button');
 
-  if (!logo || !bg) return;
+  if (!menu || !webflowButton) return;
 
-  function toggleNav() {
-    const threshold = window.innerHeight * 0.6;
+  menu.addEventListener('click', function (e) {
+    const link = e.target.closest('a');
+    if (!link) return;
 
-    if (window.scrollY >= threshold) {
-      logo.classList.add('nav-visible');
-      bg.classList.add('nav-visible');
-    } else {
-      logo.classList.remove('nav-visible');
-      bg.classList.remove('nav-visible');
-    }
-  }
+    const href = link.getAttribute('href');
+    if (!href) return;
 
-  toggleNav();
+    const url = new URL(link.href, window.location.origin);
+    const isSamePage =
+      url.pathname === window.location.pathname &&
+      url.hash;
 
-  window.addEventListener('scroll', toggleNav, { passive: true });
-  window.addEventListener('resize', toggleNav);
+    if (!isSamePage) return;
+
+    setTimeout(function () {
+      if (checkbox) {
+        checkbox.checked = false;
+        checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+
+      if (webflowButton.classList.contains('w--open')) {
+        webflowButton.click();
+      }
+    }, 0);
+  });
 });
