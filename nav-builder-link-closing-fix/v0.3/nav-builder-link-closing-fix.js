@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const menu = document.querySelector('.aire-nav_hamburger-menu');
-  const checkbox = document.querySelector('.aire-hamburger input');
+  const menu = document.querySelector('.nav_hamburger-menu');
+  const checkbox = document.querySelector('.hamburger');
   const webflowButton = document.querySelector('.w-nav-button');
 
   if (!menu || !webflowButton) return;
